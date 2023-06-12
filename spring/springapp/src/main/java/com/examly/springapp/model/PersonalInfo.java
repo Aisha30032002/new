@@ -19,15 +19,47 @@ public class PersonalInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String firstName;
 
-    @Column(nullable = false)
+    @Column
+    private String middleName;
+    
+    @Column
+    private String lastName;
+
+    @Column
     private String email;
 
-    // Other personal information fields and their respective getters/setters
+    @Column
+    private String gender;
 
-    // Constructors
+    @Column
+    private Long phone;
 
-    // Getters and Setters
+
+    @Column
+    private String coverLetter;
+
+    @Column
+    private int date;
+
+    @Column
+    private int month;
+
+    @Column
+    private Long year;
+
+    @Column
+    private String street;
+
+    @Column
+    private String city;
+
+    @Column
+    private String state;
+
+    @Column
+    private Long postalCode;
+
 }

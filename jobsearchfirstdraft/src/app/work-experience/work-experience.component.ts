@@ -26,7 +26,7 @@ export class WorkExperienceComponent implements OnInit {
     }
 
     const formData = this.workExperienceForm.value;
-    this.http.post('/api/job-applications/work-experience', formData)
+    this.http.post('http://localhost:8080/api/job-applications/work-experience', formData)
       .subscribe(
         (response) => {
           console.log('Work experience submitted successfully:', response);

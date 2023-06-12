@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal-info',
@@ -7,9 +9,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
-  PersonalInfoFormComponent !: FormGroup
+  PersonalInfoFormComponent !: FormGroup;
   title = 'my-first-project';
-  submitted=false;
+  
   // handleResumeUpload(files: FileList) {
   //   // Handle file upload for the resume field
   //   if (files.length > 0) {
@@ -23,9 +25,10 @@ export class PersonalInfoComponent implements OnInit {
     {"countryname":"USA"},
     {"countryname":"UK"}
   ]
-  router: any;
-  http: any;
-
+  
+  constructor(private http: HttpClient,private router:Router) {
+    
+  }
 
   ngOnInit() {
     this.PersonalInfoFormComponent = new FormGroup({
@@ -40,34 +43,30 @@ export class PersonalInfoComponent implements OnInit {
       'date': new FormControl(null),
       'month': new FormControl(null),
       'year':new FormControl(null),
-      'address' : new FormGroup({
-            'country':new FormControl(null),
-            'street': new FormControl(null),
-            'city': new FormControl(null),
-            'state': new FormControl(null),
-            'postalCode': new FormControl(null)
-      })
+      'country':new FormControl(null),
+      'street': new FormControl(null),
+      'city': new FormControl(null),
+      'state': new FormControl(null),
+      'postalCode': new FormControl(null)
+      
     });
   }
   submitPersonalInfo() {
     
-  console.log(this.PersonalInfoFormComponent);
-  this.PersonalInfoFormComponent.reset
-  this.submitted=true
-    if (this.PersonalInfoFormComponent.invalid) {
-      return;
-    }
+
   alert("Success")
     const formData = this.PersonalInfoFormComponent.value;
      this.http.post('http://localhost:8080/api/job-applications/personal-info', formData)
        .subscribe(
          (response: any) => {
            console.log('Personal information submitted successfully:', response);
-           this.router.navigate(['/work-experience']);
+            this.router.navigate(['/work-experience']);
          },
          (error: any) => {
            console.error('Error submitting personal information:', error);
          }
        );
+
+
   }
 }  

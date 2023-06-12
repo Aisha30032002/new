@@ -1,5 +1,5 @@
 
-  <form (ngSubmit)="submitWorkExperience()">
+  <form (ngSubmit)="submitWorkExperience()" [formGroup]="workExperienceForm">
     <div>
       <label for="company">Company:</label>
       <input type="text" id="company" formControlName="company" required>

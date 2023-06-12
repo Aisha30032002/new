@@ -1,16 +1,13 @@
-<!-- 
-<app-personal-info></app-personal-info>
-<app-work-experience></app-work-experience> -->
 
 
 <div class="container">
 
-  <h3 class="title">Personal Information:</h3>
+  <h3 class="title">Personal Information</h3>
     <br>
         <div class="row">
           <div class="row col-sm-5">
-            <form (ngSubmit)="submitPersonalInfo()">
-            <div  class="form-group">
+            <form (ngSubmit)="submitPersonalInfo()" [formGroup]="PersonalInfoFormComponent">
+            <div  class="form-group" >
               <label for="firstName">First Name</label>
               <input type="text" id="firstName" name="firstName" class="form-control" autocomplete="off" formControlName="firstName" >
               <!-- (ngClass)="{'is-invalid':submitted && AppComponent.controls.firstName.errors}"/> -->
@@ -31,18 +28,18 @@
             <div  class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" class="form-control" autocomplete="off" formControlName="email" required>
-              <!-- <span class="help-block"
-              *ngIf="!AppComponent.get('email').valid  && AppComponent.get('email').touched">Please enter a valid email !</span> -->
+             <span class="help-block"
+              *ngIf="!PersonalInfoFormComponent.get('email')  && PersonalInfoFormComponent.get('email')">Please enter a valid email !</span> 
             </div>
 
-            <div  class="form-group">
-              <label for="gender">Gender</label>&nbsp;&nbsp;&nbsp;
-              <input type="radio" value="male" name="gender" class="form-control" required>Female
-              <input type="radio" value="female" name="gender" class="form-control" required>Male
+            <div class="form-group">
+                  <label for="gender">Gender</label>&nbsp;&nbsp;&nbsp;
+                  <input type="radio" id="male" value="male" name="gender" class="form-control" required>Female
+                  <input type="radio" id="female" value="female" name="gender" class="form-control" required>Male
             </div>
             
             <div  class="form-group">
-              <label for="phone">Phone:</label>
+              <label for="phone">Phone</label>
               <input type="tel" id="phone" formControlName="phone" required pattern="[0-9]{10}">
               <small>Please enter a 10-digit phone number.</small>
             </div>
@@ -53,9 +50,10 @@
               <small>Upload your resume (PDF or Word document).</small>
             </div> -->
 
-            <div  class="form-group">
-              <label for="coverLetter">Cover Letter:</label>
-              <textarea id="coverLetter" name="coverLetter" required></textarea>
+            
+            <div class="form-group">
+              <label for="coverLetter">Cover Letter</label>
+              <input type="coverLetter" id="coverLetter" formControlName="coverLetter" required >
             </div>
     <h3>Date Of Birth</h3>
           <div class="birthdate">
@@ -75,9 +73,6 @@
 
             
           <h3>Address</h3>
-          <div class="row col-sm-2"></div>
-          <div class="row col-sm-5">
-          <div class="form-group"  formGroupName="address">
             <div class="form-group">
               <label for="country">Country</label>
               <select type="text" id="country" name="country" formControlName="country" class="form-group" required >
@@ -102,8 +97,7 @@
               <label for="postalCode">PostalCode</label>
               <input type="number" id="postalCode" formControlName="postalCode" required>
             </div>
-          </div>
-          </div>
+          
         
         
           <!-- Other personal information fields -->
